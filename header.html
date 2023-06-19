@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>Creating Javascript Element</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>Hello World</h1>
+    </div>
+    <script>
+      const heading = document.createElement("h2");
+      heading.textContent = "Hello World Javascript";
+      heading.className = "header";
+      document.getElementById("root").append(heading);
+    </script>
+  </body>
+</html>
