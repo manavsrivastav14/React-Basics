@@ -14,20 +14,28 @@
   <body>
     <div id="root"><h1>Hello World</h1></div>
     <script type="text/babel">
+      function sum() {
+        let a = 10 + 5;
+        return a;
+      }
       const App = () => {
         var name = "Manav";
         var age = 22;
         var nullVar = null;
         var dummy;
         var flag = true;
+
+        const header = <h2>This is a JSX Expression </h2>;
         return (
           <>
             <h1>Starting With JSX</h1>
+            {header}
             <p>My Name is {name}</p>
             <p>I am {age} years old.</p>
             <p>Null value : {nullVar}</p>
             <p>Undefined Variable value: {dummy}</p>
             <p>Boolean variable set as true value:{flag}</p>
+            <p>Calling another function : {sum()}</p>
           </>
         );
       };
