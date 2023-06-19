@@ -33,20 +33,27 @@
 //     </ul>
 //   </>
 // );
-function App() {
+// function App() {
+//   return (
+//     <>
+//       <h1>React Project </h1>
+//       <p>Skills used to make this project</p>
+//       <ol>
+//         <li>HTML</li>
+//         <li>javaScript</li>
+//         <li>CSS</li>
+//       </ol>
+//     </>
+//   );
+// }
+
+function Name() {
   return (
     <>
-      <h1>React Project </h1>
-      <p>Skills used to make this project</p>
-      <ol>
-        <li>HTML</li>
-        <li>javaScript</li>
-        <li>CSS</li>
-      </ol>
+      <p>JSX is javascript XML</p>
     </>
   );
 }
-
 const ArrowFunction = () => {
   return (
     <>
@@ -60,4 +67,13 @@ const ArrowFunction = () => {
     </>
   );
 };
-ReactDOM.createRoot(document.getElementById("root")).render(<ArrowFunction />);
+
+const App = () => {
+  return (
+    <>
+      <ArrowFunction />
+      <Name />
+    </>
+  );
+};
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
