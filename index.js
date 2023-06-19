@@ -18,9 +18,19 @@
 
 // Creating React element with JSX
 const JSXHeading = (
-  <div>
-    <h1>Hello React with JSX!</h1>
-    <p>This is a paragraph in JSX</p>
-  </div>
+  //   <React.Fragment>
+  //     <h1>Hello React with JSX!</h1>
+  //     <p>This is a paragraph in JSX</p>
+  //   </React.Fragment>
+
+  <>
+    <h1>About React</h1>
+    <p>React is a javascript library used to build user interfaces.</p>
+    <ul>
+      <li>React is declarative</li>
+      <li>Used to build SPA</li>
+      <li>React is composable</li>
+    </ul>
+  </>
 );
 ReactDOM.createRoot(document.getElementById("root")).render(JSXHeading);
