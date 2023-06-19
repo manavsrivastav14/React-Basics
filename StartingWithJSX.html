@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Learning JSX</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"><h1>Hello World</h1></div>
+    <script type="text/babel">
+      const App = () => {
+        var name = "Manav";
+        var age = 22;
+        var nullVar = null;
+        var dummy;
+        var flag = true;
+        return (
+          <>
+            <h1>Starting With JSX</h1>
+            <p>My Name is {name}</p>
+            <p>I am {age} years old.</p>
+            <p>Null value : {nullVar}</p>
+            <p>Undefined Variable value: {dummy}</p>
+            <p>Boolean variable set as true value:{flag}</p>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
