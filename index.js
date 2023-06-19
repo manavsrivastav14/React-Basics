@@ -46,4 +46,18 @@ function App() {
     </>
   );
 }
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+const ArrowFunction = () => {
+  return (
+    <>
+      <h1>React Project using Arrow Function </h1>
+      <p>Skills used to make this project using arrow function</p>
+      <ul>
+        <li>HTML</li>
+        <li>javaScript</li>
+        <li>CSS</li>
+      </ul>
+    </>
+  );
+};
+ReactDOM.createRoot(document.getElementById("root")).render(<ArrowFunction />);
