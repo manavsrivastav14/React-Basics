@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Rendering Objects and Arrays in JSX</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        const arrayVariable = [1, 2, 3, 4];
+        const cars = ["BMW", "Mercedes", "Nexa", "Nexon"];
+        const objectVariable = { name: "Manav", age: 10 };
+        const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        const divisbleNumbers = numbers.filter((number) => number % 2 === 0);
+        console.log("DivisibleNumbers", divisbleNumbers);
+        return (
+          <>
+            <h1>Rendering Array variable in JSX:</h1>
+            {arrayVariable.map((element) => (
+              <p>{element}</p>
+            ))}
+            <h1>Rendering Cars in JSX:</h1>
+            <ul>
+              {cars.map((car) => (
+                <li>{car}</li>
+              ))}
+            </ul>
+
+            <h1>Array Iteration Methods</h1>
+            {divisbleNumbers.map((num) => (
+              <h3>{num}</h3>
+            ))}
+
+            <h1>Rendering Object variable in JSX:{objectVariable.name}</h1>
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
