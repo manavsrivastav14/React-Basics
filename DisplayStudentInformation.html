@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title>Display Student Information</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root">Hello World</div>
+    <script type="text/babel">
+      const students = [
+        { name: "Student 1", branch: "Computer", marks: 90 },
+        { name: "Student 2", branch: "Mechanical", marks: 80 },
+        { name: "Student 3", branch: "EXTC", marks: 75 },
+        { name: "Student 4", branch: "IT", marks: 60 },
+        { name: "Student 5", branch: "Electrical", marks: 65 },
+      ];
+      const cars = [
+        {
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5r936sf2FUiGYdS3obxNca4NPYUQ-Td1KqdLJTl77&s",
+          name: "Car 1",
+          average: 30,
+          type: "city car",
+        },
+        {
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5r936sf2FUiGYdS3obxNca4NPYUQ-Td1KqdLJTl77&s",
+          name: "Car 2",
+          average: 28,
+          type: "sports",
+        },
+        {
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5r936sf2FUiGYdS3obxNca4NPYUQ-Td1KqdLJTl77&s",
+          name: "Car 3",
+          average: 21,
+          type: "sedan",
+        },
+        {
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5r936sf2FUiGYdS3obxNca4NPYUQ-Td1KqdLJTl77&s",
+          name: "Car 4",
+          average: 26,
+          type: "luxury",
+        },
+        {
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5r936sf2FUiGYdS3obxNca4NPYUQ-Td1KqdLJTl77&s",
+          name: "Car 5",
+          average: 38,
+          type: "SUV",
+        },
+      ];
+      const App = () => {
+        return (
+          <>
+            <h1>Student Information</h1>
+            <table border="3" cellPadding="5">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Branch</th>
+                  <th>Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {students.map((student, index) => (
+                  <tr key={index}>
+                    <td>{student.name}</td>
+                    <td>{student.branch}</td>
+                    <td>{student.marks}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <h1>Car Details</h1>
+            <table border="3" cellPadding="5">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Average</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cars.map((car, index) => (
+                  <tr key={index}>
+                    <td>
+                      <img src={car.img} alt="car" />
+                    </td>
+                    <td>{car.name}</td>
+                    <td>{car.average}</td>
+                    <td>{car.type}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
