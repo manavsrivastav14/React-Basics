@@ -30,8 +30,8 @@
             ))}
             <h1>Rendering Cars in JSX:</h1>
             <ul>
-              {cars.map((car) => (
-                <li>{car}</li>
+              {cars.map((car, index) => (
+                <li key={index}>{car}</li>
               ))}
             </ul>
 
