@@ -21,6 +21,11 @@
         score += num;
         rootElement.render(<App />);
       }
+
+      function handleWicket() {
+        wicket += 1;
+        rootElement.render(<App />);
+      }
       const App = () => (
         <>
           <h1>Score Keeper</h1>
@@ -70,7 +75,7 @@
             >
               6
             </button>
-            <button>Wicket</button>
+            <button onClick={handleWicket}>Wicket</button>
           </div>
         </>
       );
