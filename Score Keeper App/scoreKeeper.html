@@ -17,6 +17,14 @@
       let score = 0;
       let wicket = 0;
 
+      function addOne() {
+        if (wicket < 10) {
+          score += 1;
+          rootElement.render(<App />);
+        } else {
+          alert("Innings is Over. Score cannot be Updated.");
+        }
+      }
       function addScore(num) {
         if (wicket < 10) {
           score += num;
@@ -39,13 +47,7 @@
             Score: {score} / {wicket}
           </h2>
           <div>
-            <button
-              onClick={() => {
-                addScore(1);
-              }}
-            >
-              1
-            </button>
+            <button onClick={addOne}>1</button>
             <button
               onClick={() => {
                 addScore(2);
