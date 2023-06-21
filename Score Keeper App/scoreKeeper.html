@@ -102,7 +102,9 @@
           {ballWiseResult.map((ball, index) => (
             <>
               {index % 6 === 0 ? <br /> : null}
-              <span key={index}>{ball === 0 ? <strong>.</strong> : ball}</span>
+              <span key={index} style={ball === "W" ? { color: "red" } : {}}>
+                {ball === 0 ? <strong>.</strong> : ball}
+              </span>
               &nbsp;&nbsp;
             </>
           ))}
