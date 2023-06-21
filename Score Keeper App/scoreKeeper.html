@@ -18,6 +18,7 @@
       let wicket = 0;
       let ballWiseResult = [];
       let hit = 0;
+      const inputRef = React.createRef();
 
       //   function addOne() {
       //     if (wicket < 10) {
@@ -98,11 +99,9 @@
       const Result = () => (
         <div>
           {ballWiseResult.map((ball, index) => (
-            <>
-              <p key={index} style={ball === "W" ? { color: "red" } : {}}>
-                {ball === 0 ? <strong>.</strong> : ball}
-              </p>
-            </>
+            <p key={index} style={ball === "W" ? { color: "red" } : {}}>
+              {ball === 0 ? <strong>.</strong> : ball}
+            </p>
           ))}
         </div>
       );
@@ -115,14 +114,22 @@
         } else if (hit !== "W" && wicket < 10) {
           score += hit;
         }
-        ballWiseResult.unshift(hit);
+        ballWiseResult.unshift(
+          <span>{`${hit}, ${inputRef.current.value}`}</span>
+        );
+
+        // Resetting the values after pushing the value in array
+        hit = 0;
+        inputRef.current.value = "";
+
+        // console.log(inputRef.current.value);
         rootElement.render(<App />);
       }
 
       const Form = () => (
         <form onSubmit={handleSubmit}>
-          <input type="text" value={hit} />
-          <input placeholder="Write a comment" />
+          <input value={hit} readOnly />
+          <input placeholder="Write a comment" ref={inputRef} />
           <button onClick={() => {}}>Submit</button>
         </form>
       );
