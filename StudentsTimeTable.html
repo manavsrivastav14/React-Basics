@@ -183,21 +183,6 @@
       const days = Object.keys(timeTable);
       console.log("Days:", days);
 
-      let time = [];
-      days.map((day) => {
-        time.push(timeTable[day]);
-        // console.log({ day }, time);
-      });
-
-      let timeKeys = Object.keys(time);
-      console.log("Time:", timeKeys);
-
-      let subjects = [];
-      time.map((hour) => {
-        subjects.push(time[hour]);
-      });
-      console.log("Subjects:", subjects);
-
       const App = () => (
         <table border="1">
           <caption>School time-table of a class 12th Student.</caption>
@@ -214,12 +199,30 @@
             </tr>
           </thead>
           <tbody>
-            {days.map((day, index) => {
+            {days.map((day, index) => (
               <tr key={index}>
-                <td>{day}</td>
-                <td>{}</td>
-              </tr>;
-            })}
+                <th>{day}</th>
+                {Object.keys(timeTable[day]).map((hour, index) => {
+                  console.log("Hour:", hour + "Index:", index);
+                  if (index === 3) {
+                    console.log("Inside if");
+                    return (
+                      <>
+                        <td key={`break${day}`}>Break</td>
+                        <td key={index}>{timeTable[day][hour].subject}</td>
+                      </>
+                    );
+                  } else {
+                    console.log("Inside else");
+                    return (
+                      <>
+                        <td key={index}>{timeTable[day][hour].subject}</td>
+                      </>
+                    );
+                  }
+                })}
+              </tr>
+            ))}
           </tbody>
         </table>
       );
