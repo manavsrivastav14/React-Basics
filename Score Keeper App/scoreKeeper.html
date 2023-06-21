@@ -18,13 +18,19 @@
       let wicket = 0;
 
       function addScore(num) {
-        score += num;
-        rootElement.render(<App />);
+        if (wicket < 10) {
+          score += num;
+          rootElement.render(<App />);
+        } else {
+          alert("Innings is Over. Score cannot be Updated.");
+        }
       }
 
       function handleWicket() {
-        wicket += 1;
-        rootElement.render(<App />);
+        if (wicket < 10) {
+          wicket += 1;
+          rootElement.render(<App />);
+        }
       }
       const App = () => (
         <>
