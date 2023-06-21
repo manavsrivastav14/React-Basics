@@ -17,35 +17,27 @@
       let score = 0;
       let wicket = 0;
       let ballWiseResult = [];
+      let hit = 0;
 
-      function addOne() {
-        if (wicket < 10) {
-          ballWiseResult.push(1);
-          score += 1;
-          rootElement.render(<App />);
-          //   console.log(ballWiseResult);
-        } else {
-          alert("Innings is Over. Score cannot be Updated.");
-        }
-      }
+      //   function addOne() {
+      //     if (wicket < 10) {
+      //       ballWiseResult.push(1);
+      //       score += 1;
+      //       rootElement.render(<App />);
+      //       //   console.log(ballWiseResult);
+      //     } else {
+      //       alert("Innings is Over. Score cannot be Updated.");
+      //     }
+      //   }
+
       function addScore(num) {
-        if (wicket < 10) {
-          ballWiseResult.push(num);
-          score += num;
-          rootElement.render(<App />);
-          //   console.log(ballWiseResult);
-        } else {
-          alert("Innings is Over. Score cannot be Updated.");
-        }
+        hit = num;
+        rootElement.render(<App />);
       }
 
       function handleWicket() {
-        if (wicket < 10) {
-          ballWiseResult.push("W");
-          wicket += 1;
-          rootElement.render(<App />);
-          //   console.log(ballWiseResult);
-        }
+        hit = "W";
+        rootElement.render(<App />);
       }
 
       const ScoreButtons = () => (
@@ -57,7 +49,13 @@
           >
             Dot
           </button>
-          <button onClick={addOne}>1</button>
+          <button
+            onClick={() => {
+              addScore(1);
+            }}
+          >
+            1
+          </button>
           <button
             onClick={() => {
               addScore(2);
@@ -101,15 +99,34 @@
         <div>
           {ballWiseResult.map((ball, index) => (
             <>
-              {index % 6 === 0 ? <br /> : null}
-              <span key={index} style={ball === "W" ? { color: "red" } : {}}>
+              <p key={index} style={ball === "W" ? { color: "red" } : {}}>
                 {ball === 0 ? <strong>.</strong> : ball}
-              </span>
-              &nbsp;&nbsp;
+              </p>
             </>
           ))}
         </div>
       );
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        if (hit === "W" && wicket < 10) {
+          wicket += 1;
+          console.log("Wicket:", wicket);
+        } else if (hit !== "W" && wicket < 10) {
+          score += hit;
+        }
+        ballWiseResult.unshift(hit);
+        rootElement.render(<App />);
+      }
+
+      const Form = () => (
+        <form onSubmit={handleSubmit}>
+          <input type="text" value={hit} />
+          <input placeholder="Write a comment" />
+          <button onClick={() => {}}>Submit</button>
+        </form>
+      );
+
       const App = () => (
         <>
           <h1>Score Keeper</h1>
@@ -117,7 +134,11 @@
             Score: {score} / {wicket}
           </h2>
           <ScoreButtons />
-          <Result />
+          <br />
+          <hr />
+          <Form />
+          <hr />
+          {wicket <= 10 ? <Result /> : ""}
         </>
       );
       const rootElement = ReactDOM.createRoot(document.getElementById("root"));
