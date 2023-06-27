@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>React App</title>
+
+    <style>
+      .App {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+      }
+
+      form {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      form div {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      button {
+        width: 120px;
+        padding-block: 5px;
+        cursor: pointer;
+      }
+
+      th,
+      td {
+        padding: 10px;
+      }
+
+      input {
+        padding: 5px;
+        font-size: 1.1rem;
+      }
+
+      .served {
+        background-color: red;
+      }
+      .dining {
+        background-color: lime;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      let customers = [];
+      const capacity = 25;
+      let seatsLeft = 25;
+      const guestCountRef = React.createRef();
+      const nameRef = React.createRef();
+      const phoneNumberRef = React.createRef();
+      let date = new Date();
+      // Create form submit handler here
+
+      function clearFormInputs() {
+        console.log("Clearing Form Inputs");
+        guestCountRef.current.value = "";
+        nameRef.current.value = "";
+        phoneNumberRef.current.value = "";
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        if (seatsLeft >= guestCountRef.current.value) {
+          seatsLeft -= guestCountRef.current.value;
+          let customer = {
+            count: guestCountRef.current.value,
+            name: nameRef.current.value,
+            phone: phoneNumberRef.current.value,
+            status: true,
+            checkIn: date.toLocaleTimeString(),
+            checkOut: null,
+          };
+          customers.push(customer);
+
+          clearFormInputs();
+          rootElement.render(<App />);
+        }
+        console.log(customers);
+      }
+
+      function removeEntry(index) {
+        seatsLeft += parseInt(customers[index].count);
+        customers.splice(index, 1);
+        console.log("Delete function implemented", customers);
+        rootElement.render(<App />);
+      }
+
+      function changeStatus(index) {
+        let customer = customers[index];
+        console.log("Status of Customer: ", customer);
+        customer.status = false;
+        console.log("Status of Customer After change: ", customer);
+        rootElement.render(<App />);
+      }
+
+      const App = () => (
+        <div className="App" style={{ textAlign: "center" }}>
+          <div>
+            <h2>Total Capacity: {capacity}</h2>
+            <h2>Seats Left: {seatsLeft}</h2>
+          </div>
+
+          {/* Create a form here */}
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input
+              type="number"
+              placeholder="Guests Count"
+              ref={guestCountRef}
+            />
+            <input type="text" placeholder="Primary Guest Name" ref={nameRef} />
+            <input
+              type="text"
+              placeholder="Phone Number"
+              ref={phoneNumberRef}
+            />
+            <button style={{ margin: "auto" }}>Add Entry</button>
+          </form>
+
+          {/* Complete table to show records of customers */}
+          <table border="1px" style={{ margin: "auto" }}>
+            <thead>
+              <tr>
+                <th>Count</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Check in</th>
+                <th>Check out</th>
+                <th>Status</th>
+                <th>Remove Entry</th>
+              </tr>
+            </thead>
+            <tbody>
+              {customers.map((customer, index) => (
+                <tr key={index}>
+                  <td>{customer.count}</td>
+                  <td>{customer.name}</td>
+                  <td>{customer.phone}</td>
+                  <td>{customer.checkIn}</td>
+                  <td>
+                    {customer.checkOut === null ? "-" : customer.checkOut}
+                  </td>
+                  <td
+                    onClick={() => {
+                      changeStatus(index);
+                    }}
+                  >
+                    {customer.status ? "Click to checkout" : "Served"}
+                  </td>
+                  <td
+                    onClick={() => {
+                      removeEntry(index);
+                    }}
+                  >
+                    Delete
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
