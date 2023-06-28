@@ -20,13 +20,20 @@ class MovieCard extends Component {
     // });
 
     // Form 2 of setState
+    this.setState((prevState) => ({
+      stars: prevState.stars + 0.5,
+    }));
+  };
+
+  removeStars = () => {
     this.setState((prevState) => {
-      return {
-        stars: prevState.stars + 0.5,
-      };
+      if (prevState.stars >= 0.5) {
+        return {
+          stars: prevState.stars - 0.5,
+        };
+      }
     });
   };
-  removeStars() {}
 
   render() {
     const { title, plot, price, rating, stars } = this.state;
@@ -63,6 +70,7 @@ class MovieCard extends Component {
                   src="https://cdn-icons-png.flaticon.com/128/43/43625.png"
                   alt="decrease-star"
                   className="str-btn"
+                  onClick={this.removeStars}
                 />
               </div>
               <span className="starCount">{stars}</span>
