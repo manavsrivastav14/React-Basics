@@ -20,9 +20,13 @@ class MovieCard extends Component {
     // });
 
     // Form 2 of setState
-    this.setState((prevState) => ({
-      stars: prevState.stars + 0.5,
-    }));
+    this.setState((prevState) => {
+      if (prevState.stars <= 4.5) {
+        return {
+          stars: prevState.stars + 0.5,
+        };
+      }
+    });
   };
 
   removeStars = () => {
@@ -36,6 +40,7 @@ class MovieCard extends Component {
   };
 
   render() {
+    console.log("Render...");
     const { title, plot, price, rating, stars } = this.state;
     return (
       <div className="main">
