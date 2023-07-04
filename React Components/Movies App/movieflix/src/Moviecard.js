@@ -9,8 +9,13 @@ class MovieCard extends Component {
       price: 199,
       rating: 8.9,
       stars: 0,
+      favourite: false,
+      addToCart: false,
     };
   }
+
+  // Using arrow function so binding can be avoided
+
   addStars = () => {
     // this.state.stars += 0.5;
 
@@ -39,9 +44,26 @@ class MovieCard extends Component {
     });
   };
 
+  handleFavouriteButtonClick = () => {
+    this.setState((prevState) => {
+      return {
+        favourite: !prevState.favourite,
+      };
+    });
+  };
+
+  handleCartButtonClick = () => {
+    this.setState((prevState) => {
+      return {
+        addToCart: !prevState.addToCart,
+      };
+    });
+  };
+
   render() {
     console.log("Render...");
-    const { title, plot, price, rating, stars } = this.state;
+    const { title, plot, price, rating, stars, favourite, addToCart } =
+      this.state;
     return (
       <div className="main">
         <div className="movie-card">
@@ -79,8 +101,27 @@ class MovieCard extends Component {
                 />
               </div>
               <span className="starCount">{stars}</span>
-              <button className="favourite-btn">Favourite</button>
-              <button className="cart-btn">Add to cart</button>
+              {favourite ? (
+                <button
+                  className="unfavourite-btn"
+                  onClick={this.handleFavouriteButtonClick}
+                >
+                  Unfavourite
+                </button>
+              ) : (
+                <button
+                  className="favourite-btn"
+                  onClick={this.handleFavouriteButtonClick}
+                >
+                  Favourite
+                </button>
+              )}
+              <button
+                className={addToCart ? "remove-cart-btn" : "cart-btn"}
+                onClick={this.handleCartButtonClick}
+              >
+                {addToCart ? "Remove from cart" : "Add to cart"}
+              </button>
             </div>
           </div>
         </div>
