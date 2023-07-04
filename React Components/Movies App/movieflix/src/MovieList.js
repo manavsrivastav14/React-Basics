@@ -2,17 +2,23 @@ import { Component } from "react";
 import MovieCard from "./Moviecard";
 
 class MovieList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "The Avengers",
+      plot: "Supernatural Powers shown in the movie.",
+      price: 199,
+      rating: 8.9,
+      stars: 0,
+      favourite: false,
+      addToCart: false,
+    };
+  }
+
   render() {
     return (
       <>
-        <h1>MovieList</h1>
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+        <MovieCard movies={this.state} />
       </>
     );
   }
