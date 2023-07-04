@@ -1,0 +1,26 @@
+/* Write code for your CSS here */
+.App {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Hero {
+  font-size: 25px;
+}
+
+.Skills {
+  display: flex;
+  justify-content: space-around;
+}
+.skill-name {
+  background-color: aqua;
+  color: black;
+  font-size: 25px;
+}
+
+.About {
+  font-size: 25px;
+  width: 50%;
+}
