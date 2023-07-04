@@ -48,7 +48,7 @@ class MovieCard extends Component {
   };
 
   render() {
-    console.log("Render...");
+    // console.log(this.props);
     const { title, plot, price, rating, star, fav, isInCart, poster } =
       this.props.movies;
     return (
@@ -70,7 +70,7 @@ class MovieCard extends Component {
                   src="https://cdn-icons-png.flaticon.com/128/3524/3524388.png"
                   alt="increase-star"
                   className="str-btn"
-                  onClick={this.addStars}
+                  onClick={() => this.props.addStars(this.props.movies)}
                 />
                 <img
                   src="https://t4.ftcdn.net/jpg/00/61/25/93/240_F_61259351_3EL2WAZWZTXSQb1dPEzWu0yFLZNfIzFC.jpg"
