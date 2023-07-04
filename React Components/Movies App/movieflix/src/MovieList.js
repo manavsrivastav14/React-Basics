@@ -44,9 +44,12 @@ class MovieList extends Component {
   }
 
   render() {
+    const { movies } = this.state;
     return (
       <>
-        <MovieCard movies={this.state} />
+        {movies.map((movie) => (
+          <MovieCard movies={movie} />
+        ))}
       </>
     );
   }

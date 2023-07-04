@@ -49,16 +49,13 @@ class MovieCard extends Component {
 
   render() {
     console.log("Render...");
-    const { title, plot, price, rating, stars, favourite, addToCart } =
+    const { title, plot, price, rating, star, fav, isInCart, poster } =
       this.props.movies;
     return (
       <div className="main">
         <div className="movie-card">
           <div className="left">
-            <img
-              alt="Poster"
-              src="https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg"
-            />
+            <img alt="Poster" src={poster} />
           </div>
 
           <div className="right">
@@ -87,8 +84,8 @@ class MovieCard extends Component {
                   onClick={this.removeStars}
                 />
               </div>
-              <span className="starCount">{stars}</span>
-              {favourite ? (
+              <span className="starCount">{star}</span>
+              {fav ? (
                 <button
                   className="unfavourite-btn"
                   onClick={this.handleFavouriteButtonClick}
@@ -104,10 +101,10 @@ class MovieCard extends Component {
                 </button>
               )}
               <button
-                className={addToCart ? "remove-cart-btn" : "cart-btn"}
+                className={isInCart ? "remove-cart-btn" : "cart-btn"}
                 onClick={this.handleCartButtonClick}
               >
-                {addToCart ? "Remove from cart" : "Add to cart"}
+                {isInCart ? "Remove from cart" : "Add to cart"}
               </button>
             </div>
           </div>
