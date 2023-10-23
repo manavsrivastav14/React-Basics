@@ -1,3 +1,5 @@
+# App is hosted on https://taskmate-ms14.netlify.app/ and deployed on netlify
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
