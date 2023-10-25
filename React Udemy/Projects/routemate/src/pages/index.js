@@ -1,0 +1,10 @@
+export { Home } from "./Home";
+export { Admin } from "./Admin";
+export { ProductDetail } from "./ProductDetail";
+export { ProductList } from "./ProductList";
+export { PageNotFound } from "./PageNotFound";
+export { Contact } from "./Contact/Contact";
+export { ContactIn } from "./Contact/ContactIn";
+export { ContactEU } from "./Contact/ContactEU";
+export { ContactUS } from "./Contact/ContactUS";
+export { ContactOther } from "./Contact/ContactOther";
