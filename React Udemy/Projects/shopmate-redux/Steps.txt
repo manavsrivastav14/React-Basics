@@ -1,0 +1,6 @@
+1. npm install react-redux@8
+2. npm install @reduxjs/toolkit
+3. create new folder in src called store. It will have two files a. slice -> it defines the actions that will be performed.
+b. store -> it stores all the actions that can be performed i.e. configuration of actions
+
+4. creating slice -> 1. cartSlice.js
