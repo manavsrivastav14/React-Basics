@@ -4,3 +4,18 @@
 b. store -> it stores all the actions that can be performed i.e. configuration of actions
 
 4. creating slice -> 1. cartSlice.js
+
+
+THings used:
+useSelector, useDispatch, createSlice.
+
+useSelector is used to get the state information from a particular slice.
+useDispatch is used to execute a reducer action.
+createSlice is used for storing the state info. of a part of project along with the reducer actions that can be performed.
+
+A slice consists of name of the slice, the state which slice consists, the actions' definition that can be performed are written inside reducers of the slice.
+This slice is then configured inside the redux store.
+We define the actions that are present inside the slice created and then define the reducer inside the slice created.
+
+Inside store.js we will configure the slice reducer that we have created.
+we will pass the reducer inside the slice by importing it first inside store.js and then passing it reducer object.
