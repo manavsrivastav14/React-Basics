@@ -1,14 +1,21 @@
 import "./CartCard.css";
-
-export const CartCard = ({product}) => {
-  const {name, price, image} = product;
-
+import { useReducer } from "react";
+export const CartCard = ({ product }) => {
+  const { name, price, image } = product;
+  const { removeFromCart } = useReducer();
   return (
-      <div className="cartCard">
-        <img src={image} alt={name} />
-        <p className="productName">{name}</p>
-        <p className="productPrice">${price}</p>
-        <button>Remove</button>
-      </div>
-  )
-}
+    <div className="cartCard">
+      <img src={image} alt={name} />
+      <p className="productName">{name}</p>
+      <p className="productPrice">${price}</p>
+      <button
+        onClick={() => {
+          console.log(removeFromCart);
+          removeFromCart(product);
+        }}
+      >
+        Remove
+      </button>
+    </div>
+  );
+};
