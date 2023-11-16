@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProductCard } from "../../../components/Elements/ProductCard";
+import { ProductCard } from "../../../components";
 import { useEffect } from "react";
 
 export const FeaturedProducts = () => {
@@ -9,6 +9,7 @@ export const FeaturedProducts = () => {
       const response = await fetch("http://localhost:3004/featured_products");
       const data = await response.json();
       setProducts(data);
+      console.log(data);
     }
     fetchProducts();
   }, []);
