@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { Search } from "../Sections/Search";
+import { useTitle } from "../../hooks/useTitle";
 
 export const Header = () => {
+  useTitle("Access Latest Computer Science Books");
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
