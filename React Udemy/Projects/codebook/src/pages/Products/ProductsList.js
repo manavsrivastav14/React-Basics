@@ -4,12 +4,13 @@ import { FilterBar } from "./components/FilterBar";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
-
+import { useFilter } from "../../context";
 export const ProductsList = () => {
-  useTitle("Explore eBooks Collection");
+  const { productList } = useFilter();
   const [show, setShow] = useState(false);
   const [products, setProducts] = useState([]);
   const search = useLocation().search;
+  useTitle("Explore eBooks Collection");
   const searchTerm = new URLSearchParams(search).get("q");
   console.log(searchTerm);
 
