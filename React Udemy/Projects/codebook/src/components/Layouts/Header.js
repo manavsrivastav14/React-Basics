@@ -3,13 +3,15 @@ import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { Search } from "../Sections/Search";
 import { useTitle } from "../../hooks/useTitle";
+import { DropdownLoggedOut, DropdownLoggedIn } from "../index";
 
 export const Header = () => {
-  useTitle("Access Latest Computer Science Books");
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
   const [searchSection, setSearchSection] = useState(false);
+
+  const [dropdown, setDropdown] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -19,7 +21,7 @@ export const Header = () => {
       document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
-
+  useTitle("Access Latest Computer Science Books");
   return (
     <header>
       <nav className="bg-white dark:bg-gray-900">
@@ -46,7 +48,11 @@ export const Header = () => {
                 </span>
               </span>
             </Link>
-            <span className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
+            <span
+              onClick={() => setDropdown(!dropdown)}
+              className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"
+            ></span>
+            {dropdown && <DropdownLoggedOut />}
           </div>
         </div>
       </nav>

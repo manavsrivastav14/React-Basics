@@ -238,5 +238,30 @@
     }
   ],
   "orders": [],
-  "users": []
+  "users": [
+    {
+      "email": "manav@gmail.com",
+      "password": "$2a$10$lOY1NwGkhSur8NpJ5zCQg.V6ZyN3MoKXf2DgObOUubr2UNeD8iF1e",
+      "name": "Manav",
+      "id": 1
+    },
+    {
+      "email": "shubh@gmail.com",
+      "password": "$2a$10$nQ598wylj8p6Vsq/pxByuOBiXFzXs7b3RXKNy9RO2XjZ7i1g322SW",
+      "name": "Manav",
+      "id": 2
+    },
+    {
+      "email": "sistii@gmail.com",
+      "password": "$2a$10$GPHXLTYC9y0Num0qCtz.f.axBG9yt0vI4DMf65MrN6b7rmfzfFVDG",
+      "name": "manav",
+      "id": 3
+    },
+    {
+      "email": "sheebs@gmail.com",
+      "password": "$2a$10$DsafIDjipcektNqZBlaDHuJJbmAT1q7fCSy2W1za1YF8fukwaGg7K",
+      "name": "shubhi",
+      "id": 4
+    }
+  ]
 }
