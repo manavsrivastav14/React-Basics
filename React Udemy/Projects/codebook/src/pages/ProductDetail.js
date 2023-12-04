@@ -4,6 +4,7 @@ import { Rating } from "../components";
 import { useParams } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle";
 import { useCart } from "../context";
+import { getProduct } from "../services";
 
 export const ProductDetail = () => {
   const { cartList, addToCart, removeFromCart } = useCart();
@@ -22,8 +23,8 @@ export const ProductDetail = () => {
   useTitle(product.name);
   useEffect(() => {
     async function fetchProducts() {
-      const response = await fetch(`http://localhost:3004/products/${id}`);
-      const data = await response.json();
+      console.log("Id: ", id);
+      const data = await getProduct(id);
       setProduct(data);
     }
     fetchProducts();
