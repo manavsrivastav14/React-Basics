@@ -7,6 +7,8 @@ import {
   Login,
   Register,
   CartPage,
+  OrderPage,
+  DashboardPage,
 } from "../pages";
 export const AllRoutes = () => {
   const token = true;
@@ -23,6 +25,22 @@ export const AllRoutes = () => {
           element={
             <ProtectedRoute>
               <CartPage />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="order-summary"
+          element={
+            <ProtectedRoute>
+              <OrderPage />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
             </ProtectedRoute>
           }
         ></Route>

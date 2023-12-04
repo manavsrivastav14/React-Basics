@@ -1,6 +1,37 @@
+import { useEffect, useState } from "react";
 import { useCart } from "../../../context";
+import { useNavigate } from "react-router-dom";
+import { getUser, createOrder } from "../../../services";
+
 export const Checkout = ({ setCheckout }) => {
-  const { total } = useCart();
+  const { cartList, total, clearCart } = useCart();
+  const [user, setUser] = useState({});
+  const token = JSON.parse(sessionStorage.getItem("token"));
+  const cbid = JSON.parse(sessionStorage.getItem("cbid"));
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchData() {
+      // getUser();
+      const data = await getUser();
+      setUser(data);
+    }
+    fetchData();
+  }, []);
+
+  async function handleOrderSubmit(event) {
+    event.preventDefault();
+
+    try {
+      const data = await createOrder(cartList, total, user);
+      clearCart();
+      navigate("/order-summary", { state: { data: data, status: true } });
+    } catch (error) {
+      navigate("/order-summary", { state: { status: false } });
+    }
+  }
+
   return (
     <section>
       <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"></div>
@@ -38,7 +69,7 @@ export const Checkout = ({ setCheckout }) => {
               <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                 <i className="bi bi-credit-card mr-2"></i>CARD PAYMENT
               </h3>
-              <form className="space-y-6">
+              <form onSubmit={handleOrderSubmit} className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
@@ -51,7 +82,7 @@ export const Checkout = ({ setCheckout }) => {
                     name="name"
                     id="name"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white"
-                    value="Shubham Sarda"
+                    value={user.name || ""}
                     disabled
                     required=""
                   />
@@ -68,7 +99,7 @@ export const Checkout = ({ setCheckout }) => {
                     name="email"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white"
-                    value="shubham@example.com"
+                    value={user.email || ""}
                     disabled
                     required=""
                   />
@@ -110,7 +141,7 @@ export const Checkout = ({ setCheckout }) => {
                     type="number"
                     name="year"
                     id="year"
-                    className="inlineblock w-20 ml-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white"
+                    className="inline-block w-20 ml-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white"
                     value="27"
                     disabled
                     required=""
