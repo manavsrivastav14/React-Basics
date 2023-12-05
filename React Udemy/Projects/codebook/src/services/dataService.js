@@ -17,7 +17,7 @@ export async function getUser() {
     },
   };
   const response = await fetch(
-    `http://localhost:3004/600/users/${browserData.id}`,
+    `${process.env.REACT_APP_HOST}/600/users/${browserData.id}`,
     requestOptions
   );
   if (!response.ok) {
@@ -37,7 +37,7 @@ export async function getUserOrders() {
     },
   };
   const response = await fetch(
-    `http://localhost:3004/660/orders?user.id=${browserData.id}`,
+    `${process.env.REACT_APP_HOST}/660/orders?user.id=${browserData.id}`,
     requestOptions
   );
   if (!response.ok) {
@@ -69,7 +69,7 @@ export async function createOrder(cartList, total, user) {
     body: JSON.stringify(order),
   };
   const response = await fetch(
-    `http://localhost:3004/660/orders`,
+    `${process.env.REACT_APP_HOST}/660/orders`,
     requestOptions
   );
   if (!response.ok) {
