@@ -6,6 +6,9 @@ export async function login(authDetail) {
   };
 
   const response = await fetch("http://localhost:3004/login", requestOptions);
+  if (!response.ok) {
+    throw { message: response.statusText, status: response.status };
+  }
   const data = await response.json();
   //   console.log(data);
 
@@ -27,6 +30,9 @@ export async function register(authDetail) {
     "http://localhost:3004/register",
     requestOptions
   );
+  if (!response.ok) {
+    throw { message: response.statusText, status: response.status };
+  }
   const data = await response.json();
 
   if (data.accessToken) {

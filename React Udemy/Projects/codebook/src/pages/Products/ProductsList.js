@@ -6,10 +6,12 @@ import { useLocation } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
 import { useFilter } from "../../context";
 import { getProductList } from "../../services";
+import { toast } from "react-toastify";
 
 export const ProductsList = () => {
   const { products, initialProductList } = useFilter();
   const [show, setShow] = useState(false);
+
   // const [products, setProducts] = useState([]);
   const search = useLocation().search;
   useTitle("Explore eBooks Collection");
@@ -18,9 +20,15 @@ export const ProductsList = () => {
 
   useEffect(() => {
     async function fetchProducts() {
-      const data = await getProductList(searchTerm);
-
-      initialProductList(data);
+      try {
+        const data = await getProductList(searchTerm);
+        initialProductList(data);
+      } catch (error) {
+        toast.error(error.message, {
+          closeButton: true,
+          position: "bottom-center",
+        });
+      }
     }
     fetchProducts();
   }, [searchTerm]);

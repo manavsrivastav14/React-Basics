@@ -8,13 +8,21 @@ export const Register = () => {
   useTitle("Register");
   async function handleRegister(event) {
     event.preventDefault();
-    const authDetail = {
-      name: event.target.name.value,
-      email: event.target.email.value,
-      password: event.target.password.value,
-    };
-    const data = await register(authDetail);
-    data.accessToken ? navigate("/products") : toast.error(data);
+    try {
+      const authDetail = {
+        name: event.target.name.value,
+        email: event.target.email.value,
+        password: event.target.password.value,
+      };
+      const data = await register(authDetail);
+      data.accessToken ? navigate("/products") : toast.error(data);
+    } catch (error) {
+      toast.error(error.message, {
+        closeButton: true,
+        position: "bottom-center",
+      });
+    }
+
     // console.log(data);
   }
 
