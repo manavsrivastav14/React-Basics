@@ -9,6 +9,7 @@ import {
   CartPage,
   OrderPage,
   DashboardPage,
+  PageNotFound,
 } from "../pages";
 export const AllRoutes = () => {
   const token = true;
@@ -44,6 +45,7 @@ export const AllRoutes = () => {
             </ProtectedRoute>
           }
         ></Route>
+        <Route path="*" element={<PageNotFound />}></Route>
       </Routes>
     </>
   );
