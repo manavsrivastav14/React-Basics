@@ -1,0 +1,15 @@
+npm init
+npm install express --save
+npm install -D json-server json-server-auth
+
+copy the data folder in codebook project to codebook-mock-server folder
+
+inside package.json file, under "main" : "index.js" add a line "type" : "module"
+inside scripts in package.json file add the following above "test" -> "start": "node index.js"
+
+Create index.js file
+add code inside index.js file from github. The github code is used to create express server.
+
+then run the command npm start of both codebook and codebook-mock-server to check whether server is working or not.
+
+Now, deploy the codebook-mock-server in 'render'. It is a free server/backend deployment platform
